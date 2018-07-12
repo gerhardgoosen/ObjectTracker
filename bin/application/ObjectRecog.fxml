@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="741.0" prefWidth="1088.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.ObjectRecogController">
+  <!-- TODO Add Nodes -->
+  <center>
+    <SplitPane dividerPositions="0.2945205479452055" focusTraversable="true" prefHeight="160.0" prefWidth="200.0">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="619.0" prefWidth="656.0">
+          <children>
+            <ImageView fx:id="originalFrame" fitHeight="619.0" fitWidth="825.3333333333333" preserveRatio="true" scaleX="1.0" scaleY="1.0" scaleZ="1.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-400.33" AnchorPane.topAnchor="5.0" />
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <SplitPane dividerPositions="0.4993215739484396" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                  <children>
+                    <ImageView fx:id="maskImage" fitHeight="0.0" fitWidth="0.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                  <children>
+                    <ImageView fx:id="morphImage" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  </children>
+                </AnchorPane>
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </center>
+  <right>
+    <VBox alignment="CENTER" spacing="10.0">
+      <Button fx:id="cameraButton" alignment="CENTER" onAction="#startCamera" text="Start camera" />
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Options" textAlignment="CENTER" underline="true">
+        <font>
+          <Font name="System Bold" size="14.0" />
+        </font>
+      </Label>
+      <Separator prefWidth="200.0" />
+      <CheckBox fx:id="detectColors" mnemonicParsing="false" text="Detect Colors" />
+      <CheckBox fx:id="fill" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Fill" />
+      <Separator prefWidth="200.0" />
+      <CheckBox fx:id="fineTune" mnemonicParsing="false" onAction="#toggleFineTune" text="Fine Tune" />
+      <Separator prefWidth="200.0" />
+      <VBox prefHeight="61.0" prefWidth="200.0">
+        <children>
+          <HBox prefHeight="100.0" prefWidth="200.0" VBox.margin="$x1">
+            <children>
+              <RadioButton fx:id="radBlue" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setHSVSliderRanges" selected="true" text="Blue" textFill="#003d99" visible="false">
+                <toggleGroup>
+                  <ToggleGroup fx:id="colorGroup" />
+                </toggleGroup>
+                <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+                </HBox.margin>
+              </RadioButton>
+              <RadioButton fx:id="radGreen" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setHSVSliderRanges" text="Green" textFill="#00cc21" toggleGroup="$colorGroup" visible="false" HBox.margin="$x1" />
+            </children>
+          </HBox>
+          <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+              <RadioButton fx:id="radYellow" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setHSVSliderRanges" text="Yellow" textFill="#fff500" toggleGroup="$colorGroup" visible="false" HBox.margin="$x1" />
+              <RadioButton fx:id="radRed" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setHSVSliderRanges" text="Red" textFill="RED" toggleGroup="$colorGroup" visible="false" HBox.margin="$x1" />
+            </children>
+          </HBox>
+        </children>
+      </VBox>
+      <Button fx:id="saveColorButton" mnemonicParsing="false" onAction="#saveColor" text="Save" visible="false" />
+      <Label fx:id="hueStartLabel" text="Hue Start" visible="false" />
+      <Slider fx:id="hueStart" blockIncrement="1.0" max="180.0" min="0.0" value="0.0" visible="false" />
+      <padding>
+        <Insets bottom="10.0" right="10.0" />
+      </padding>
+      <Label fx:id="hueStopLabel" text="Hue Stop" visible="false" />
+      <Slider fx:id="hueStop" blockIncrement="1.0" max="180.0" min="0.0" value="0.0" visible="false" />
+      <Label fx:id="satStartLabel" text="Saturation Start" visible="false" />
+      <Slider fx:id="saturationStart" blockIncrement="1.0" max="256.0" min="0.0" value="0.0" visible="false" />
+      <Label fx:id="satStopLabel" text="Saturation Stop" visible="false" />
+      <Slider fx:id="saturationStop" blockIncrement="1.0" max="256.0" min="0.0" value="0.0" visible="false" />
+      <Label fx:id="valStartLabel" text="Value Start" visible="false" />
+      <Slider fx:id="valueStart" blockIncrement="1.0" max="256.0" min="0.0" value="0.0" visible="false" />
+      <Label fx:id="valStopLabel" text="Value Stop" visible="false" />
+      <Slider fx:id="valueStop" blockIncrement="1.0" max="256.0" min="0.0" value="0.0" visible="false" />
+      <Separator />
+      <Label fx:id="hueCurrentValue" text="hueRange" visible="false" />
+      <Label fx:id="satCurrentValue" text="satRange" visible="false" />
+      <Label fx:id="valCurrentValue" text="valRange" visible="false" />
+    </VBox>
+  </right>
+</BorderPane>
